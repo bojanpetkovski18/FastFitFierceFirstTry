@@ -1,0 +1,261 @@
+﻿@model FastFitFierce.Models.ListProducts.ListProductsViewModel
+@using FastFitFierce.Models.ListProducts
+
+@{
+    ViewBag.Title = "Top Offers";
+}
+
+<div id="themeSlider" class="carousel slide" data-ride="carousel"
+     style="margin-top: -33px;margin-bottom: 100px; box-shadow: 0 20px 20px rgba(0,0,0,0.30), 0 20px 20px rgba(0,0,0,0.22); width: 80vw; position: relative; left: calc(-40vw + 50%);">
+
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img src="~/Images/myproteincorusel.png" alt="First slide">
+            <div class="carousel-caption">
+                <h3>BIG DISCOUNT ON MYPROTEIN</h3>
+                <p>Biggest discount yet for our Myprotein products, check 'em out!</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img src="~/Images/Protein.jpeg" alt="Second slide">
+            <div class="carousel-caption">
+                <h3>CHECK OUT OUR SUPPLEMENT PRODUCTS</h3>
+                <p>Currently there is a big bonus on the gold standard whey protein!</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img src="~/Images/steroids.jpg" alt="Third slide">
+            <div class="carousel-caption">
+                <h3>FIND OUT THE LIES AND TRUTHS ABOUT STEROIDS</h3>
+                <p>At our blogs there are explinations for all of your curiosities.</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img src="~/Images/workout.jpg" alt="Fourth slide">
+            <div class="carousel-caption">
+                <h3>FOLLOW OUR PROGRAMS TO DISCOVER YOUR TRUE POTENTIAL</h3>
+                <p>Our programs consist of bodybuilding, powerlifting, crossfit and many more plans.</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img src="~/Images/dumbell.png" alt="Fifth slide">
+            <div class="carousel-caption">
+                <h3>WE HAVE THE GEAR TO MAKE YOU FAST, FIT AND FIERCE</h3>
+                <p>In the gear section you can find weights, belts, whole workout sets and many more.</p>
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev"></a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next"></a>
+</div>
+
+
+
+<h1 id="bannerId" style="text-align: center;"><img src="~/Images/h1.png" style="max-width: 100%; opacity: 0.9; margin-top: 75px; " /></h1>
+
+
+<div class="container">
+    <h3 id="onsale" style=" text-align: left;"><img src="~/Images/onsale.png" style="max-width: 20%; max-height: 40%; opacity: 0.7; margin-bottom: -90px; margin-top: 80px; " /></h3>
+    <hr style="border: none;height: 20px;width: 100%;height: 50px;margin-top: -30px; margin-bottom: 45px; border-bottom: 2px solid #1f1209;box-shadow: 0 20px 20px -20px #333;" />
+    <div class="row onsaleR">
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="@Model.ListOfProducts[0].ProductImg">
+                    </a>
+                    <span class="product-new-label">Sale</span>
+                    <span class="product-discount-label">20%</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">@Model.ListOfProducts[0].ProductName</a></h3>
+                    <div class="price">
+                        $@(Model.ListOfProducts[0].ProductPrice*(decimal)0.7)
+                        <span>$@Model.ListOfProducts[0].ProductPrice</span>
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ListOfProducts[0].ProductId }, FormMethod.Post))
+                    {
+                        <button class="add-to-cart" type="submit">+ Add To Cart</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="@Model.ListOfProducts[5].ProductImg">
+                    </a>
+                    <span class="product-new-label">Sale</span>
+                    <span class="product-discount-label">30%</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">@Model.ListOfProducts[5].ProductName</a></h3>
+                    <div class="price">
+                        $@(Model.ListOfProducts[5].ProductPrice*(decimal)0.85)
+                        <span>$@Model.ListOfProducts[5].ProductPrice</span>
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ListOfProducts[5].ProductId }, FormMethod.Post))
+                    {
+                        <button class="add-to-cart" type="submit">+ Add To Cart</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="@Model.ListOfProducts[6].ProductImg">
+                    </a>
+                    <span class="product-new-label">Sale</span>
+                    <span class="product-discount-label">30%</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">@Model.ListOfProducts[6].ProductName</a></h3>
+                    <div class="price">
+                        $@(Model.ListOfProducts[6].ProductPrice*(decimal)0.8-(decimal)0.01)
+                        <span>$@Model.ListOfProducts[6].ProductPrice</span>
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ListOfProducts[6].ProductId }, FormMethod.Post))
+                    {
+                        <button class="add-to-cart" type="submit">+ Add To Cart</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="@Model.ListOfProducts[22].ProductImg">
+                    </a>
+                    <span class="product-new-label">Sale</span>
+                    <span class="product-discount-label">50%</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">@Model.ListOfProducts[22].ProductName</a></h3>
+                    <div class="price">
+                        $9.99
+                        <span>$@Model.ListOfProducts[22].ProductPrice</span>
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ListOfProducts[22].ProductId }, FormMethod.Post))
+                    {
+                        <button class="add-to-cart" type="submit">+ Add To Cart</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="border: none;height: 20px;width: 100%;height: 50px;margin-top: -30px; margin-bottom: 45px; border-bottom: 2px solid #1f1209;box-shadow: 0 20px 10px -20px #333;" /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <h3 id="bestseller" style=" text-align: right;"><img src="~/Images/bestsellers.png" style="max-width: 20%; max-height: 40%; opacity: 0.7; margin-bottom: -90px; margin-top: 60px; " /></h3>
+    <hr style="border: none;height: 20px;width: 100%;height: 50px;margin-top: -30px; margin-bottom: 45px; border-bottom: 2px solid #1f1209;box-shadow: 0 20px 10px -20px #333;" />
+    <div class="row bestsellerR">
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid" id="best-seller">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="@Model.ListOfProducts[1].ProductImg">
+                    </a>
+                    <span class="product-new-label" style="background: #c4b04c">Top</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">@Model.ListOfProducts[1].ProductName</a></h3>
+                    <div class="price">
+                        $@(Model.ListOfProducts[1].ProductPrice-(decimal)0.01)
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ListOfProducts[1].ProductId }, FormMethod.Post))
+                    {
+                        <button class="add-to-cart" type="submit">+ Add To Cart</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid" id="best-seller">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="@Model.ListOfProducts[17].ProductImg">
+                    </a>
+                    <span class="product-new-label" style="background: #c4b04c">Top</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">@Model.ListOfProducts[17].ProductName</a></h3>
+                    <div class="price">
+                        $@(Model.ListOfProducts[17].ProductPrice-(decimal)0.01)
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ListOfProducts[17].ProductId }, FormMethod.Post))
+                    {
+                        <button class="add-to-cart" type="submit">+ Add To Cart</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid" id="best-seller">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="@Model.ListOfProducts[23].ProductImg">
+                    </a>
+                    <span class="product-new-label" style="background: #c4b04c">Top</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">@Model.ListOfProducts[23].ProductName</a></h3>
+                    <div class="price">
+                        $24.99
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ListOfProducts[23].ProductId }, FormMethod.Post))
+                    {
+                        <button class="add-to-cart" type="submit">+ Add To Cart</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid" id="best-seller">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="~/Images/bar.png">
+                        <img class="pic-2" src="~/Images/bar.png">
+                    </a>
+                    <span class="product-new-label" style="background: #c4b04c">Top</span>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Excelent - Protein Bar 25%</a></h3>
+                    <div class="price">
+                        $1.99
+                    </div>
+                    @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ListOfProducts[13].ProductId }, FormMethod.Post))
+                    {
+                        <button class="add-to-cart" type="submit">+ Add To Cart</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div><hr style="border: none;height: 20px;width: 100%;height: 50px;margin-top: 0px;border-bottom: 2px solid #1f1209;box-shadow: 0 20px 10px -20px #333;" /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <h3 id="sponsors" style=" text-align: center;"><img src="~/Images/sponsors.png" style="max-width: 20%; max-height: 40%; opacity: 0.7; margin-bottom:-10px; margin-top: 60px; " /></h3>
+    <hr style="border: none;height: 20px;width: 100%;height: 50px;margin-top: -30px; margin-bottom: 45px; border-bottom: 2px solid #1f1209;box-shadow: 0 20px 10px -20px #333;" />
+    <section>
+        <img class="slide1" style="max-width:100px;" src="~/Images/myp.png">
+        <img class="slide1" style="max-width:100px;" src="~/Images/on.jpg">
+        <img class="slide1" style="max-width:100px;" src="~/Images/pal.png">
+        <img class="slide1" style="max-width:100px;" src="~/Images/nike.jpg">
+        <img class="slide1" style="max-width:100px;" src="~/Images/adidas.jpg">
+        <img class="slide1" style="max-width:100px;" src="~/Images/syn.png">
+        <img class="slide1" style="max-width:100px;" src="~/Images/puma.jpg">
+        <img class="slide1" style="max-width:100px;" src="~/Images/polleo.png">
+        <img class="slide1" style="max-width:100px;" src="~/Images/beltlogo.jpg">
+        <img class="slide1" style="max-width:100px;" src="~/Images/logosponsor.png">
+    </section>
+    <hr style="border: none;height: 20px;width: 100%;height: 50px; margin-bottom: 300px; margin-top: -5px;border-bottom: 2px solid #1f1209;box-shadow: 0 20px 10px -20px #333;" />
+</div>
+

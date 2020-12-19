@@ -1,0 +1,36 @@
+﻿@using FastFitFierce.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", id = "contactForm", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h1>Log into an existing account.</h1>
+    <div style="margin-left: 100px; padding-top: 50px;">
+        <div class="form-group">
+            <p>Username</p>
+            <span class="icon-case"><i class="fa fa-envelope-o"></i></span>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "input" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <p>Password</p>
+            <span class="icon-case"><i class="fa fa-info"></i></span>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "input" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+
+        
+        <p>@Html.ActionLink("Register as a new user", "Register")</p>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+        <button type="submit" class="bouton-contact">Register</button>
+ }
+ 
+ @section Scripts {
+      @Scripts.Render("~/bundles/jqueryval")
+ }

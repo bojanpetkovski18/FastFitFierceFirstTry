@@ -1,0 +1,85 @@
+﻿@model IEnumerable<FastFitFierce.DAL.Product>
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/AdminDashboard.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Products you have created.</h1>
+    <br />
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminDashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Products</li>
+    </ol>
+
+    <div class="card mb-4">
+        <a href="/Admin/CreateProduct" style="width: 15%; margin: 10px;" class="btn btn-primary">Create a Product</a>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Desciption</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 1;
+                            foreach (var item in Model)
+                            {
+                                string result = (item.CategoryId == 4) ? "Supplements" : "Gear";
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@item.ProductName</td>
+                                    <td>@result</td>
+                                    <td>$@(item.ProductPrice)</td>
+                                    <td>@item.Quantity</td>
+                                    <td><img src="@item.ProductImg" style="max-width: 100px;" /></td>
+                                    <td>@item.Descript
+                                    <br />
+                                    Created: @item.CreatedDate
+                                    <br />
+                                    Modified: @item.ModifiedDate
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "EditProduct", new { id = item.ProductId }) |
+                                        <a href="/Admin/DeleteProduct/@item.ProductId" class="js-delete-p" data-id="@item.ProductId">Delete</a>
+                                    </td>
+                                </tr>
+
+                                i++;
+                            }
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var table = $("#dataTable").DataTable();
+        $("#dataTable .js-delete-p").on('click', function () {
+            var self = $(this);
+            $.ajax({
+                method: 'GET',
+                url: "/Admin/DeleteProduct/" + self.attr('data-id'),
+                success: function () {
+                    table.row(self.parents("tr")).remove().draw();
+                }
+            });
+        });
+
+    </script>
+}

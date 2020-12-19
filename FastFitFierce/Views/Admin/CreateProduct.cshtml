@@ -1,0 +1,93 @@
+﻿@model FastFitFierce.DAL.Product
+
+@{
+    ViewBag.Title = "CreateProduct";
+    Layout = "~/Views/Shared/AdminDashboard.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Create a Product</h4>
+        <hr /><br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { placeholder = "Name",@class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        @{
+            List<SelectListItem> list = ViewBag.CategoryList;
+        }
+
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.CategoryId, list, "Category", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { placeholder = "Price", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+              <div class="form-group">
+                      <div class="col-md-6">
+                          <div class="row">
+                              <div class="col-sm-3 form-control" style="margin-left: 12px;">
+                                  <label class="control-label">Active</label>
+                                  @Html.CheckBox("isActive")
+                                  @Html.ValidationMessageFor(model => model.isActive, "", new { @class = "text-danger" })
+                              </div>
+                              <div class="col-sm-3 form-control" style="margin-left: 12px;">
+                                  <label class="control-label">Delete</label>
+                                  @Html.CheckBox("isDelete")
+                                  @Html.ValidationMessageFor(model => model.isDelete, "", new { @class = "text-danger" })
+                              </div>
+                              <div class="col-sm-3 form-control" style="margin-left: 12px;">
+                                  <label class="control-label">Available</label>
+                                  @Html.CheckBox("isFeatured")
+                                  @Html.ValidationMessageFor(model => model.isFeatured, "", new { @class = "text-danger" })
+                              </div>
+                          </div>
+                      </div>
+              </div><br />
+
+
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Descript, new { htmlAttributes = new { placeholder = "Description", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descript, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ProductImg, new { htmlAttributes = new { placeholder = "Image URL", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductImg, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { placeholder = "Quantity", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a href="/Admin/Products" class="btn btn-danger">Leave</a>
+            </div>
+        </div>
+    </div>
+}

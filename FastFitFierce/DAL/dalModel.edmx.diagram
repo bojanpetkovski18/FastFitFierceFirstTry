@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5c55780c21b34e17822713f9dafae412" Name="Diagram1">
+        <EntityTypeShape EntityType="dbFFFModel.Cart" Width="1.5" PointX="4.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFFFModel.CartStatu" Width="1.5" PointX="5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFFFModel.Category" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFFFModel.Customer" Width="1.5" PointX="0.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFFFModel.CustomerRole" Width="1.5" PointX="6.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFFFModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFFFModel.Role" Width="1.5" PointX="7.125" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbFFFModel.ShippingDetail" Width="1.5" PointX="2.875" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="dbFFFModel.FK__Cart__ProductId__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFFFModel.FK__Product__Categor__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="dbFFFModel.FK__ShippingD__Custo__34C8D9D1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

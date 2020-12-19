@@ -1,0 +1,188 @@
+﻿@using FastFitFierce.Utilities;
+@using FastFitFierce.Models.ListProducts
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Fast Fit & Fierce</title>
+    <link rel="stylesheet" href="~/Content/myCss.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900,900i" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/myScript.js"></script>
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jquerymobile")
+
+</head>
+<body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <a href="/Home/Index" style="float: left; margin-right: 20px; margin-left: 140px;">
+                    <img src="~/Images/logo1.png" id="logo" />
+                </a>
+                <ul class="nav navbar-nav" id="navigation">
+                    <li class="@Html.IsActive("Home", "Index")"><a href="/Home/Index">TOP OFFERS</a></li>
+                    <li class="@Html.IsActive("Home", "Supplements")"><a href="/Home/Supplements">SUPPLEMENTS</a></li>
+                    <li class="@Html.IsActive("Home", "Gear")"><a href="/Home/Gear">GEAR</a></li>
+                    <li class="@Html.IsActive("Home", "Contact")"><a href="/Home/Contact">CONTACT</a></li>
+                    <li>
+                        <form class="form-inline" style="margin-top: 8px; margin-left: 20px;">
+                            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" style="width: 330px;">
+                            <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <button class="dropbtn"><i class="glyphicon glyphicon-shopping-cart"></i> SHOPPING CART</button>
+                        <div class="dropdown-content" style="width: 330px;">
+                            <ul style="list-style-type: none; padding-top: 25px;">
+                                @if (Session["cart"] != null)
+                                {
+                                    foreach (Item item in (List<Item>)Session["cart"])
+                                    {
+                                        <li style="font-size: 12px;">
+                                            <a style="display: inline; text-align:left;" href="#">@item.Product.ProductName</a>
+                                            @using (Html.BeginForm("RemoveFromCart", "Home", new { productId = item.Product.ProductId }, FormMethod.Post))
+                                            {
+                                                <input type="submit" style="border:none; background:none; padding:0;" value="Remove" />
+                                            }
+                                            ___________________________
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                            <hr style="border-bottom: 1px solid black; max-width: 80%; opacity: 0.6; margin-bottom: -2px;" />
+                            <a href="/Home/Checkout">CHECKOUT</a>
+                        </div>
+                    </li>
+                    <li>@Html.ActionLink("Sign up", "Register", "Account")</li>
+                    <li>@Html.ActionLink("Log in", "Login", "Account")</li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <br /><br />
+    <div class="container">
+        @RenderBody()
+        <div id="backToTop"></div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 footer-col" style="max-width: 25%">
+                    <div class="logofooter"> <img src="~/Images/logo.png" id="logo" style="max-width: 80px;" /></div>
+                    <p style="text-align: justify;">FFF or Fast Fit & Fierce is a bodybuilding and fitness shop that it's sole purpouse is to satisfy customer needs, primeraly their passion for healthy and long lasting life. Here at FFF we will help you achieve that goal.</p>
+                    <p><i class="fa fa-map-pin"></i> bul. Ilindenska/4 - Skopje, Macedonia</p>
+                    <p><i class="fa fa-phone"></i> Phone (NMK) : +389 70-544/455</p>
+                    <p><i class="fa fa-envelope"></i> E-mail : fastfitfierce@gmail.com</p>
+
+                </div>
+                <div class="col-md-3 col-sm-6 footer-col" style="padding-left: 60px;">
+                    <h6 class="heading7">General links</h6>
+                    <ul class="footer-ul" style="text-align:left;">
+                        <li><a href="/Home/Contact"> <u>Contact</u></a></li>
+                        <li><a href="#"><u>Products</u> </a></li>
+                        <li><a href="#"><u>List of Sponsors</u> </a></li>
+                        <li><a href="#"><u>Outlets</u></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-col">
+                    <h6 class="heading7">Latest blogs</h6>
+                    <div class="post">
+                        <p>Best workouts for muscle gain.<span> August 28,2020</span></p>
+                        <p>Are steroids bad for your health? <span>September 5,2020</span></p>
+                        <p>How to properly do deadlift. <span>December 1,2020</span></p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-col">
+                    <h6 class="heading7">Social Media</h6>
+                    <ul class="footer-social">
+                        <li><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-google-plus social-icon google" aria-hidden="true"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copyright">
+        <div class="container">
+            <div class="col-md-6">
+                <p>&copy; @DateTime.Now.Year - All Rights Reserved.</p>
+            </div>
+            <div class="col-md-6">
+                <ul class="bottom_ul">
+                    <li><a href="/Home/Index">fastfitfierce.org</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Report</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+
+            $("#backToTop").append('<a class="backToTop" href="javascript:void(null);" style="display: none;"><i class="fa fa-angle-up"></i><iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></a>');
+            var $window = $(window);
+            var distance = 80;
+            // scroll
+            $window.scroll(function () {
+                // header
+                if ($window.scrollTop() >= distance) {
+                    $(".backToTop").fadeIn();
+                } else {
+                    $(".backToTop").fadeOut();
+                }
+            });
+
+            $('.backToTop').click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+
+            $("#bannerId")
+                .on('click', function () {
+                    if ($("#bannerId img").attr('src') == '../Images/h1.png') {
+                        $("#bannerId img").attr('src', '../Images/h11.png');
+                    }
+                    else {
+                        $("#bannerId img").attr('src', '../Images/h1.png')
+                    }
+                })
+
+            $("#logo")
+                .on('mouseenter', function () {
+                    $(this).attr('src', '../Images/logo.png')
+                })
+                .on('mouseleave', function () {
+                    $(this).attr('src', '../Images/logo1.png')
+                });
+        });
+    </script>
+</body>
+</html>

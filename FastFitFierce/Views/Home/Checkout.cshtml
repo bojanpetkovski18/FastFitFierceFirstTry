@@ -1,0 +1,60 @@
+﻿@using FastFitFierce.Models.ListProducts
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align: center;"><img src="~/Images/h1Che.png" style="max-width: 50%; opacity: 0.9; margin-top: 0px; margin-bottom: 50px;" /></h1>
+
+
+    <div class="container table-responsive py-5" style="background: white; padding-top: 20px;">
+        <table class="table table-bordered table-hover" id="dataTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>Thumbnail</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                    decimal total = 0;
+                    if (Session["cart"] != null)
+                    {
+                        foreach (Item item in (List<Item>)Session["cart"])
+                        {
+                            total += item.Product.ProductPrice ?? default(decimal);
+                            string cat = (item.Product.CategoryId == 4) ? "Supplements" : "Gear";
+                            <tr>
+                                <th scope="row" width="10">@i</th>
+                                <td width="200">@item.Product.ProductName - @cat</td>
+                                <td width="50" style="text-align:center;"><img style="width: 100px;" src="@item.Product.ProductImg" /></td>
+                                <td width="15" style="text-align:center;">$@item.Product.ProductPrice</td>
+                            </tr>
+                            i++;
+                        }
+                    }
+
+                }
+                <tr>
+                    @if (total == 0)
+                    {
+                        Response.Redirect("/Home/CheckoutEmpty");
+                    }
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th style="text-align:center;">Total: $@total</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <button type="submit" class="btn btn-success" style="margin-bottom: 100px; margin-top: 20px;">Proceed to Payment</button>
+    }
+

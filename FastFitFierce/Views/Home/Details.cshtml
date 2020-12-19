@@ -1,0 +1,47 @@
+﻿@model FastFitFierce.DAL.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="margin-bottom: 100px;">
+
+    <h1 style="font-weight: 600;">@Model.ProductName</h1>
+    <hr style="border: none;height: 20px;width: 100%;height: 50px;margin-top: -30px; margin-bottom: 70px; border-bottom: 2px solid #1f1209;box-shadow: 0 20px 20px -20px #333;" />
+    <div class="col-md-4" style="margin-right: 150px;">
+        <div class="main-image">
+            <img src="@Model.ProductImg" style="max-width: 400px; border: 1px solid rgba(0,0,0,0.8); box-shadow: 1px 1px 8px black;" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <p class="detail-short-description" style="font-size: 25px; line-height: 30px; border: 1px solid black; padding: 10px; background: rgba(255, 255, 255, 0.7)">
+            @Model.Descript
+        </p><br /><br />
+        <div style="padding: 10px;" class="myinline">
+            @if ((Model.Quantity >= 60 && Model.Quantity <= 100) || (Model.ProductName.Contains("MyProtein") && Model.Quantity > 0))
+            {
+                int x = (Model.Quantity - 50) ?? default(int);
+                <p class="text-danger" style="text-decoration: line-through; font-size: 25px;">$@Model.ProductPrice</p>
+                <p class="text-success" style="font-size: 35px;">$@(Model.ProductPrice *(100-x)/100)</p>
+            }
+            else
+            {
+                <p style="font-size: 35px; line-height: 40px; ">$@Model.ProductPrice</p>
+            }
+        </div>
+        <div class="myinline">
+            @using (Html.BeginForm("AddToCart", "Home", new { productId = Model.ProductId }, FormMethod.Post))
+            {
+                <button class="btn btn-success" type="submit">
+                    <span class="icon is-small">
+                        <i class="fa fa-shopping-bag"></i>
+                    </span>
+                    <span>ADD TO CART</span>
+                </button>
+            }
+        </div>
+
+    </div>
+    <hr style="border: none;height: 20px;width: 100%;height: 50px;margin-top: -30px; margin-bottom: 70px; border-bottom: 2px solid #1f1209;box-shadow: 0 20px 20px -20px #333;" />
+</div>
+

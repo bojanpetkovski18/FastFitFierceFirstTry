@@ -1,0 +1,64 @@
+﻿@model List<FastFitFierce.DAL.Category>
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/AdminDashboard.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Categories you have created.</h1>
+    <br />
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/AdminDashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Categories</li>
+    </ol>
+
+    <div class="card mb-4">
+        <a href="/Admin/CreateCategory" style="width: 15%; margin: 10px;" class="btn btn-primary">Create a Category</a>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(Model.IndexOf(item)+1)</td>
+                                <td>@item.CategoryName</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "EditCategory", new { id = item.CategoryId }) |
+                                    <a href="/Admin/DeleteCategory/@item.CategoryId" class="js-delete-c" onclick="confirm('Are you sure you want to delete this category?');" data-id="@item.CategoryId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var table = $("#dataTable").DataTable();
+        $("#dataTable .js-delete-c").on('click', function () {
+            var self = $(this);
+            $.ajax({
+                method: 'GET',
+                url: "/Admin/DeleteCategory/" + self.attr('data-id'),
+                success: function () {
+                    table.row(self.parents("tr")).remove().draw();
+                }
+            });
+        });
+
+    </script>
+}
+
